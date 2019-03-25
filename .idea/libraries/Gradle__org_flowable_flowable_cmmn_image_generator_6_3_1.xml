@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.flowable:flowable-cmmn-image-generator:6.3.1">
+    <CLASSES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-cmmn-image-generator/6.3.1/d4d3507300e587653fc21b24cf25effe840477c4/flowable-cmmn-image-generator-6.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-cmmn-image-generator/6.3.1/ca8cd8ca2ac0643fe2be0e4b27abb6bd9c0d6ee6/flowable-cmmn-image-generator-6.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

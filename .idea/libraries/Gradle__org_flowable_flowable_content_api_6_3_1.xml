@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.flowable:flowable-content-api:6.3.1">
+    <CLASSES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-content-api/6.3.1/fea33e290a0f25a7d296d7dae5978f2849b44e6c/flowable-content-api-6.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-content-api/6.3.1/6ab528de1e98f4dc32220c851cef7ffe0c15ecb/flowable-content-api-6.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

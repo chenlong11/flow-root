@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.flowable:flowable-cmmn-converter:6.3.1">
+    <CLASSES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-cmmn-converter/6.3.1/e75ad80604e2074b59fe34a5a27f157dd30950d2/flowable-cmmn-converter-6.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/Local/.gradle/caches/modules-2/files-2.1/org.flowable/flowable-cmmn-converter/6.3.1/78137917a91368d3b6232782fca4950e1b95e899/flowable-cmmn-converter-6.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
