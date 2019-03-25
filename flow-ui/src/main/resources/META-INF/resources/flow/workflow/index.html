@@ -1,0 +1,79 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flowable Workflow</title>
+    <link rel="icon" type="image/ico" href="../favicon.ico">
+
+    <!-- build:css styles/3thparty.css -->
+    <link href="/flow/styles/common/bootstrap.min.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css styles/style.css -->
+    <link href="/flow/styles/common/style.css" rel="stylesheet">
+    <link href="/flow/styles/common/style-retina.css" rel="stylesheet">
+    <link href="/flow/workflow/styles/style-workflow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/flow/libs/angular-loading-bar-0.7.0/loading-bar.min.css" />
+    <!-- endbuild -->
+
+    <link rel="Stylesheet" href="/flow/libs/ui-grid_3.0.0/ui-grid.css" type="text/css"/>
+    <style>
+        html,body{
+            height:100%;
+        }
+    </style>
+</head>
+<body ng-app="flowableApp" ng-cloak>
+    <div ng-controller="ShowProcessDiagramCtrl">
+        <div style="overflow: hidden;position: relative;left: -0.781259px;top: -0.781259px;" id="bpmnModel"/>
+    </div>
+<!-- 3rd party libs -->
+<script src="/flow/libs/jquery_1.11.0/jquery.min.js"></script>
+<script src="/flow/libs/jquery-ui-1.10.3.custom.min.js"></script>
+
+<script src="/flow/libs/angular_1.3.13/angular.min.js"></script>
+<script src="/flow/libs/angular-animate_1.3.13/angular-animate.min.js"></script>
+<script src="/flow/libs/bootstrap_3.1.1/js/bootstrap.min.js"></script>
+<script src="/flow/libs/angular-resource_1.3.13/angular-resource.min.js"></script>
+<script src="/flow/libs/angular-cookies_1.3.13/angular-cookies.min.js"></script>
+<script src="/flow/libs/angular-sanitize_1.3.13/angular-sanitize.min.js"></script>
+<script src="/flow/libs/angular-route_1.3.13/angular-route.min.js"></script>
+<script src="/flow/libs/angular-translate_2.15.1/angular-translate.min.js"></script>
+<script src="/flow/libs/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="/flow/libs/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="/flow/libs/angular-strap_2.1.6/angular-strap.min.js"></script>
+<script src="/flow/libs/angular-strap_2.1.6/angular-strap.tpl.min.js"></script>
+<script src="/flow/libs/angular-dragdrop_1.0.11/angular-dragdrop.min.js"></script>
+<script src="/flow/libs/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="/flow/libs/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="/flow/libs/momentjs_2.18.1/momentjs.min.js"></script>
+<script src="/flow/libs/ui-grid_3.0.0/ui-grid.js" type="text/javascript"></script>
+<script src="/flow/libs/angular-loading-bar-0.7.0/loading-bar.min.js"></script>
+<script src="/flow/libs/angular-hotkeys_1.4.5/hotkeys--activiti-patch.js"></script>
+<script src="/flow/libs/angular-ui-mask/mask.min.js"></script>
+
+<!-- Configuration -->
+<script src="/flow/scripts/app-cfg.js?v=2"></script>
+
+<!-- build:js scripts/scripts.js -->
+<script src="/flow/workflow/scripts/workflow-app.js"></script>
+<script src="/flow/workflow/scripts/services/process-service.js"></script>
+<script src="/flow/workflow/scripts/services/app-definition-service.js"></script>
+<script src="/flow/scripts/common/services/related-content-service.js"></script>
+<script src="/flow/workflow/scripts/services/case-service.js"></script>
+<script src="/flow/workflow/scripts/controllers/process.js"></script>
+<script src="/flow/scripts/common/services/resource-service.js"></script>
+<script src="/flow/scripts/common/common-util.js"></script>
+
+<!-- endbuild -->
+
+<!-- Integration extensions -->
+<script src="/flow/scripts/resource-loader.js?v=2" app="workflow"></script>
+
+</body>
+</html>

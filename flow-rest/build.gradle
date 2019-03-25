@@ -1,0 +1,52 @@
+group 'com.nuvole'
+
+buildscript{
+    repositories {
+        mavenLocal()
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.sf.proguard:proguard-gradle:6.0.3'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:2.0.3.RELEASE'
+    compile 'org.flowable:flowable-spring-boot-starter:6.3.1'
+    compile 'org.flowable:flowable-json-converter:6.3.1'
+    compile 'cn.hutool:hutool-all:4.0.9'
+    compile 'com.alibaba:fastjson:1.2.13'
+    compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3'
+    compile 'org.apache.httpcomponents:httpclient:4.5.3'
+    compileOnly 'org.projectlombok:lombok:1.16.22'
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task myProguardTask(type: proguard.gradle.ProGuardTask) {
+    injars jar
+    outjars "$buildDir/libs/${project.name}-pg.jar"
+    libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
+    libraryjars files(configurations.compile.collect())
+    useuniqueclassmembernames
+    dontshrink
+    dontoptimize
+    dontnote
+    dontwarn
+
+    verbose
+    printmapping 'proguardMapping.txt'
+
+    keepattributes '*Annotation*'
+    keepattributes 'Signature'
+    keepattributes 'SourceFile,LineNumberTable'
+    //keepnames 'class ** { *; }'
+    //configuration 'proguard.pro'
+}
