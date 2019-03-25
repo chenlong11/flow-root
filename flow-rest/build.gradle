@@ -32,7 +32,7 @@ dependencies {
 
 task myProguardTask(type: proguard.gradle.ProGuardTask) {
     injars jar
-    outjars "$buildDir/libs/${project.name}-pg.jar"
+    outjars "$buildDir/libs/${project.name}-${project.version}-pg.jar"
     libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
     libraryjars files(configurations.compile.collect())
     useuniqueclassmembernames
@@ -41,12 +41,12 @@ task myProguardTask(type: proguard.gradle.ProGuardTask) {
     dontnote
     dontwarn
 
-    verbose
-    printmapping 'proguardMapping.txt'
+//    verbose
+//    printmapping 'proguardMapping.txt'
 
     keepattributes '*Annotation*'
     keepattributes 'Signature'
     keepattributes 'SourceFile,LineNumberTable'
-    //keepnames 'class ** { *; }'
+    keepnames 'class ** { *; }'
     //configuration 'proguard.pro'
 }
