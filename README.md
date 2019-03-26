@@ -16,6 +16,9 @@ compile 'cn.hutool:hutool-all:4.0.9'
 flowable:
   check-process-definitions: false
   database-schema-update: false
+  
+mybatis:
+  type-aliases-package: com.miracle.model, com.nuvole.flow.domain
 ```  
 
 4. 数据库运行脚本
@@ -24,3 +27,37 @@ flowable:
 ```
 AuthenticationService
 ```
+
+6. maven pom文件配置
+```  
+<dependencies>
+    <dependency>
+        <groupId>com.nuvole</groupId>
+        <artifactId>flow-rest</artifactId>
+        <version>1.0.1</version>
+        <scope>system</scope>
+        <systemPath>${basedir}\src\libs\flow-rest-1.0.1-pg.jar</systemPath>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.nuvole</groupId>
+        <artifactId>flow-ui</artifactId>
+        <version>1.0.1</version>
+        <scope>system</scope>
+        <systemPath>${basedir}\src\libs\flow-ui-1.0.1.jar</systemPath>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <includeSystemScope>true</includeSystemScope>
+                <fork>true</fork>
+            </configuration>
+        </plugin>
+    <plugins>
+</build>		
+```  
