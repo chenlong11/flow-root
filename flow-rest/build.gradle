@@ -1,19 +1,10 @@
 group 'com.nuvole'
 
-buildscript{
-    repositories {
-        mavenLocal()
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'net.sf.proguard:proguard-gradle:6.0.3'
-    }
-}
-
 repositories {
+    mavenLocal()
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
     mavenCentral()
 }
 
@@ -50,3 +41,4 @@ task myProguardTask(type: proguard.gradle.ProGuardTask) {
     keepnames 'class ** { *; }'
     //configuration 'proguard.pro'
 }
+

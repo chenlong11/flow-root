@@ -4,8 +4,52 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
+
+    buildscript{
+        repositories {
+            mavenLocal()
+            maven {
+                url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            }
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'net.sf.proguard:proguard-gradle:6.0.3'
+        }
+    }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allJava
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                //如果是war包填写components.web，如果是jar包填写components.java
+                from components.java
+                //配置上传源码
+                artifact sourceJar {
+                    classifier "sources"
+                }
+            }
+        }
+        repositories {
+            maven {
+                if (project.version.endsWith('-SNAPSHOT')) {
+                    url = "http://localhost:8081/repository/maven-snapshots/"
+                } else {
+                    url = "http://localhost:8081/repository/maven-releases/"
+                }
+                credentials {
+                    username 'admin'
+                    password 'admin123'
+                }
+            }
+        }
+    }
 
 }
 
