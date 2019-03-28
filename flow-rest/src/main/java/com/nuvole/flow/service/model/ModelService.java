@@ -23,6 +23,8 @@ public interface ModelService {
 
     List<ModelVo> getModelsByParameters(ModelVo modelVo);
 
+    boolean delModelByIds(String ids);
+
     void delModelById(String id);
 
     Model getModel(String modelId);

@@ -224,6 +224,19 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    public boolean delModelByIds(String ids) {
+        try {
+            String[] idAry = ids.split(",");
+            for(String id : idAry) {
+                delModelById(id);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
     public void delModelById(String id) {
         modelMapper.delete(id);
     }

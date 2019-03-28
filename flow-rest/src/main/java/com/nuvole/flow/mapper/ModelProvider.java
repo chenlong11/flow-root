@@ -33,7 +33,8 @@ public class ModelProvider {
                         "            last_updated, " +
                         "            last_updated_by, " +
                         "            version, " +
-                        "            model_type)  " +
+                        "            model_type," +
+                        "            state)  " +
                         "         values ( " +
                         "            #{id}, " +
                         "            #{name}, " +
@@ -44,7 +45,8 @@ public class ModelProvider {
                         "            #{lastUpdated}, " +
                         "            #{lastUpdatedBy}, " +
                         "            #{version}, " +
-                        "            #{modelType}) "
+                        "            #{modelType}," +
+                        "            1) "
         );
         return builder.toString();
     }
@@ -103,10 +105,10 @@ public class ModelProvider {
     public String getByParameters(ModelVo modelVo) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append(" select a.id,a.name,a.model_key key,a.description,a.created,a.created_by createdBy,a.last_updated lastUpdated, " +
+        builder.append(" select a.id,a.name,a.model_key,a.description,a.created,a.created_by createdBy,a.last_updated lastUpdated, " +
                 " a.last_updated_by lastUpdatedBy,a.version,a.model_editor_json modelEditorJson,a.model_type modelType,a.thumbnail," +
                 " a.deploy_id deploymentId,proc_def_key processDefKey,b.first_ creater " +
-                " from ACT_DE_MODEL a,ACT_ID_USER b where a.created_by = b.id_ ");
+                " from ACT_DE_MODEL a,ACT_ID_USER b where a.state = 1 and a.created_by = b.id_ ");
 
         if (modelVo.getModelType() != null) {
             builder.append(" and a.model_type = #{modelType} ");

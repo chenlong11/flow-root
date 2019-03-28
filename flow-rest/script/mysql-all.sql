@@ -36,6 +36,7 @@ CREATE TABLE `act_de_model` (
   `deploy_id` varchar(255) DEFAULT NULL,
   `proc_def_id` varchar(255) DEFAULT NULL,
   `proc_def_key` varchar(255) DEFAULT NULL,
+  `state` tinyint NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx_proc_mod_created` (`created_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
