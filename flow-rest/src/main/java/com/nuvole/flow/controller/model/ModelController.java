@@ -99,24 +99,4 @@ public class ModelController{
         return new ReturnVO(true);
     }
 
-//    @ApiOperation(value="根据id查询详情", notes="根据id查询详情")
-//    @RequestMapping(value = "/getById",method = RequestMethod.GET)
-//    public ReturnVO getById(Integer id){
-//        TestList TestList = testListMapper.selectByPrimaryKey(id);
-//        return new ReturnVO(true, TestList);
-//    }
-//
-//    @ApiOperation(value="根据id删除(多个id英文逗号分隔)", notes="根据id删除(多个id英文逗号分隔)")
-//    @RequestMapping(value = "/del",method = RequestMethod.POST)
-//    @Auth(value="testList:del")
-//    public ReturnVO del(String ids){
-//        String[] sid = ids.split(",");
-//        for(String id : sid) {
-//            testListMapper.deleteByPrimaryKey(Integer.valueOf(id));
-//        }
-//        return new ReturnVO(true);
-//    }
-
-
-
 }
