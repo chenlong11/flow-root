@@ -21,24 +21,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-task myProguardTask(type: proguard.gradle.ProGuardTask) {
+task proguard(type: proguard.gradle.ProGuardTask) {
     injars jar
     outjars "$buildDir/libs/${project.name}-${project.version}-pg.jar"
     libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
     libraryjars files(configurations.compile.collect())
-    useuniqueclassmembernames
-    dontshrink
-    dontoptimize
-    dontnote
-    dontwarn
-
-//    verbose
-//    printmapping 'proguardMapping.txt'
-
-    keepattributes '*Annotation*'
-    keepattributes 'Signature'
-    keepattributes 'SourceFile,LineNumberTable'
-    keepnames 'class ** { *; }'
-    //configuration 'proguard.pro'
+    target "1.8"
+    configuration 'proguard-rules.pro'
 }
 
