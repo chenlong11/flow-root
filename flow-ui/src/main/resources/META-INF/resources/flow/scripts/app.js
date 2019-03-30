@@ -342,7 +342,7 @@ flowableModeler
 
         // Initialize angular-translate
         $translateProvider.useStaticFilesLoader({
-            prefix: '/flow/editor-app/i18n/',
+            prefix: FLOWABLE.CONFIG.contextRoot + '/flow/editor-app/i18n/',
             suffix: '.json'
         });
         $translateProvider.preferredLanguage('zh-CN');
@@ -852,20 +852,18 @@ flowableModeler
                     initScrollHandling();
                     // var urlAry = $location.absUrl().split('/');
                     // var modelId = urlAry[urlAry.length - 2];
-
-                    var urlAry = $location.absUrl().split('=');
-                    var modelId = urlAry[urlAry.length - 1];
+                    var modelId = getUrlParam('modelId');
 
                     editorManager.setModelId(modelId);
                     //fetchModel(modelId);
-                    $http.get("/flow/editor-app/stencilset_bpmn.json").then(function (response) {
+                    $http.get(FLOWABLE.CONFIG.contextRoot + "/flow/editor-app/stencilset_bpmn.json").then(function (response) {
                         var baseUrl = "http://b3mn.org/stencilset/";
                         editorManager.setStencilData(response.data);
                         //the stencilset alters the data ref!
                         var stencilSet = new ORYX.Core.StencilSet.StencilSet(baseUrl, response.data);
                         ORYX.Core.StencilSet.loadStencilSet(baseUrl, stencilSet, modelId);
                         //after the stencilset is loaded we make sure the plugins.xml is loaded.
-                        return $http.get("/flow/editor-app/plugins.xml");
+                        return $http.get(FLOWABLE.CONFIG.contextRoot + "/flow/editor-app/plugins.xml");
                     }).then(function (response) {
                         ORYX._loadPlugins(response.data);
                         return $http.get(FLOWABLE.URL.getModel(modelId));

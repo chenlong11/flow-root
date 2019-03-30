@@ -235,6 +235,11 @@ public class FlowServiceImpl implements FlowService {
 
     }
 
+    @Override
+    public String getTaskIdByProcInstId(String procInstId, String userId) {
+        Task task = taskService.createTaskQuery().processInstanceId(procInstId).taskAssignee(userId).singleResult();
+        return task.getId();
+    }
 
     @Override
     public String getBusinessKey(String processInstId) {

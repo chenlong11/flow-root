@@ -226,7 +226,7 @@ angular.module('flowableApp')
 
             $http({
                 method: 'GET',
-                url: '/rest/flow/debugger',
+                url: FLOWABLE.CONFIG.contextRoot + '/rest/flow/debugger',
                 async: false
             }).success(function (data) {
                 $scope.model.isDebuggerEnabled = data;

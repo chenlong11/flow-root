@@ -61,3 +61,12 @@ AuthenticationService
     <plugins>
 </build>		
 ```  
+
+7 日志处理
+```
+<logger name="org.flowable.engine.impl.persistence.entity" level="DEBUG"/>
+<logger name="org.flowable.task.service" level="DEBUG"/>
+<logger name="org.flowable.idm.engine.impl.persistence.entity" level="DEBUG"/>
+<logger name="org.flowable.engine.impl.persistence.entity.JobEntityImpl" level="INFO"/>
+<logger name="org.flowable.engine.impl.persistence.entity.TimerJobEntityImpl" level="INFO"/>
+```

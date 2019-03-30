@@ -21,7 +21,4 @@ public interface TaskMapper {
     @SelectProvider(type = TaskProvider.class, method = "getCandidateOrAssignedTasks")
     List<TaskRepresentation> getCandidateOrAssignedTasks(TaskRepresentation taskRepresentation);
 
-
-    @SelectProvider(type = TaskProvider.class, method = "getTaskId")
-    String getTaskId(String procInstId);
 }

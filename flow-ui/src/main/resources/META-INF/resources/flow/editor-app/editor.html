@@ -19,39 +19,21 @@
           <div ng-if="stencilItemGroups.length > 1">
             <div ng-repeat="group in stencilItemGroups">
               <ul ng-if="group.visible && group.items" class="stencil-group" ng-class="{collapsed: !group.expanded, 'first': $first}">
-                <li ng-include="'/flow/editor-app/partials/stencil-item-template.html?version=6'"></li>
+                <li ng-include="'editor-app/partials/stencil-item-template.html?version=6'"></li>
               </ul>
-              <div ng-if="!group.items" ng-include="'/flow/editor-app/partials/root-stencil-item-template.html?version=6'"></div>
+              <div ng-if="!group.items" ng-include="'editor-app/partials/root-stencil-item-template.html?version=6'"></div>
             </div>
           </div>
           <div ng-if="stencilItemGroups.length == 1">
             <ul class="stencil-group">
               <li ng-repeat="item in stencilItemGroups[0].paletteItems" class="stencil-item" id="{{item.id}}" title="{{item.description | translate}}" ng-model="draggedElement" data-drag="true" jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
                 data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
-                <img ng-if="!item.customIcon" ng-src="/flow/editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;" />
+                <img ng-if="!item.customIcon" ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;" />
                 <img ng-if="item.customIcon" ng-src="{{config.contextRoot}}/app/rest/image/{{item.icon}}" width="16px;" height="16px;" /> {{item.name | translate}}
               </li>
             </ul>
           </div>
         </div>
-        <!-- <div id="process-treeview-wrapper" ng-controller="ProcessNavigatorController">
-          <div class="process-treeview-header">
-            流程导航
-          </div>
-          <div class="process-treeview-body" ng-show="isEditorReady">
-            <div class="process-treeview-process-title" title="{{treeview.id}}" ng-class="{'current-process': treeview.current}">
-              Process: {{treeview.name}}
-              <img ng-show="!treeview.current" ng-src="editor-app/images/pencil.png" class="pull-right" ng-click="edit(treeview.id)" />
-            </div>
-            <ul class="process-treeview-list" ng-if="treeview.children">
-              <li ng-repeat="child in treeview.children" ng-include="'editor-app/partials/process-tree-list.html?version=4'">
-              </li>
-            </ul>
-            <div ng-if="!treeview.children || treeview.children.length == 0" style="padding-left: 5px;">
-              No structural elements used.
-            </div>
-          </div>
-        </div> -->
         <div id="paletteSectionFooter">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </div>
@@ -70,11 +52,11 @@
               <!--<img src="editor-app/images/wrench.png" />-->
             <!--</div>-->
             <div class="Oryx_button" id="edit-button" style="display:none" ng-click="editShape()">
-              <img src="/flow/editor-app/images/pencil.png" />
+              <img src="editor-app/images/pencil.png" />
             </div>
             <div class="Oryx_button" ng-repeat="item in quickMenuItems" id="{{item.id}}" title="{{item.description}}" ng-click="quickAddItem(item.id)" ng-model="draggedElement" data-drag="true" jqyoui-draggable="{onStart:'startDragCallbackQuickMenu', onDrag:'dragCallbackQuickMenu'}"
               data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}" style="display:none">
-              <img ng-src="/flow/editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" />
+              <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" />
             </div>
           </div>
         </div>

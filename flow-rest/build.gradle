@@ -26,7 +26,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
     outjars "$buildDir/libs/${project.name}-${project.version}-pg.jar"
     libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
     libraryjars files(configurations.compile.collect())
-    target "1.8"
+    target "1.6"
     configuration 'proguard-rules.pro'
 }
 

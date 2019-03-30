@@ -78,9 +78,4 @@ public class TaskProvider {
         }
     }
 
-    public String getTaskId(String procInstId) {
-        StringBuilder sql = new StringBuilder(" select ID_ from ACT_RU_TASK WHERE PROC_INST_ID_ = #{procInstId}");
-        return sql.toString();
-    }
-
 }

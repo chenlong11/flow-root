@@ -93,7 +93,7 @@ function getAssigneeNameById(id){
     jQuery.ajax({
         type: 'get',
         async: false,
-        url: '/rest/flow/users/' + id + '?nocaching=' + new Date().getTime()
+        url: FLOWABLE.CONFIG.contextRoot + '/rest/flow/users/' + id + '?nocaching=' + new Date().getTime()
     }).success(function (data) {
         name = data.firstName;
     });
@@ -105,7 +105,7 @@ function getGroupNameById(id){
     jQuery.ajax({
         type: 'get',
         async: false,
-        url: '/rest/flow/idm/groups/' + id + '?nocaching=' + new Date().getTime()
+        url: FLOWABLE.CONFIG.contextRoot +  '/rest/flow/idm/groups/' + id + '?nocaching=' + new Date().getTime()
     }).success(function (data) {
         name = data.name;
     });

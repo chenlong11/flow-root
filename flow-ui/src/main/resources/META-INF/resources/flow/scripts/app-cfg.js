@@ -17,9 +17,11 @@
 
 var FLOWABLE = FLOWABLE || {};
 
+var contextPath = getUrlParam('contextPath') || '';
+
 FLOWABLE.CONFIG = {
 	'onPremise' : true,
-	'contextRoot' : '',
+	'contextRoot' : contextPath,
 	'webContextRoot' : '',
 	'datesLocalization' : false
 };

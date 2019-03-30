@@ -19,9 +19,8 @@ FLOWABLE.TOOLBAR = {
 
             // var urlAry = services.$location.absUrl().split('/');
             // var modelId = urlAry[urlAry.length - 2];
+            var modelId = getUrlParam('modelId');
 
-            var urlAry = services.$location.absUrl().split('=');
-            var modelId = urlAry[urlAry.length - 1];
 
             var json = services.editorManager.getModel();
 

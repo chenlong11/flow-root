@@ -195,7 +195,7 @@ angular.module("flowableModeler").factory("editorManager", ["$http", function ($
                 },
                 stencilset: {
                     namespace: "http://b3mn.org/stencilset/bpmn2.0#",
-                    url: "../editor/stencilsets/bpmn2.0/bpmn2.0.json"
+                    url: FLOWABLE.CONFIG.contextRoot + "/flow/editor/stencilsets/bpmn2.0/bpmn2.0.json"
                 }
             };
 

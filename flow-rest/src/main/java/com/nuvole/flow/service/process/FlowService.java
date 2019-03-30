@@ -135,4 +135,12 @@ public interface FlowService {
      * @return
      */
     boolean cancelFlow(String procInstId);
+
+    /**
+     * 根据procInstId获取taskid
+     *
+     * @param procInstId
+     * @return
+     */
+    String getTaskIdByProcInstId(String procInstId, String userId);
 }

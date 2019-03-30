@@ -48,3 +48,6 @@
 -keepnames interface com.nuvole.flow.service.process.** {
     *;
 }
+-keepnames interface com.nuvole.flow.service.model.** {
+    *;
+}

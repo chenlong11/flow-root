@@ -20,7 +20,7 @@ angular.module('flowableModeler').controller('FlowableAssignmentCtrl', [ '$scope
 
     // Config for the modal window
     var opts = {
-        template:  '/flow/editor-app/configuration/properties/assignment-popup.html?version=' + Date.now(),
+        template:  FLOWABLE.CONFIG.contextRoot + '/flow/editor-app/configuration/properties/assignment-popup.html?version=' + Date.now(),
         scope: $scope
     };
 
