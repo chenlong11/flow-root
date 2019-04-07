@@ -36,7 +36,7 @@ public class UserServiceImpl extends AbstractIdmService implements UserService {
     protected UserQuery createUserQuery(String filter, String sort) {
         UserQuery userQuery = identityService.createUserQuery();
         if (StringUtils.isNotEmpty(filter)) {
-            userQuery.userFullNameLikeIgnoreCase("%" + filter + "%");
+            userQuery.userFullNameLikeIgnoreCase("%" + filter + "%").userId(filter);
         }
 
         if (StringUtils.isNotEmpty(sort)) {

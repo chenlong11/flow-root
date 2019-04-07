@@ -1,6 +1,7 @@
 package com.nuvole.flow.service.process;
 
 import com.nuvole.flow.domain.TaskRepresentation;
+import com.nuvole.flow.mapper.IdmMapper;
 import com.nuvole.flow.mapper.TaskMapper;
 import org.flowable.bpmn.model.*;
 import org.flowable.common.engine.impl.identity.Authentication;
@@ -14,7 +15,6 @@ import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.idm.api.Group;
 import org.flowable.idm.api.IdmIdentityService;
 import org.flowable.idm.api.User;
-import org.flowable.idm.engine.impl.util.CommandContextUtil;
 import org.flowable.task.api.Task;
 import org.flowable.task.api.history.HistoricTaskInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +33,9 @@ import java.util.Map;
  */
 @Service
 public class FlowServiceImpl implements FlowService {
+
+    @Autowired
+    private IdmMapper idmMapper;
 
     @Autowired
     private RepositoryService repositoryService;
@@ -166,12 +169,8 @@ public class FlowServiceImpl implements FlowService {
     public boolean synUser(String userId, String userName) {
         try {
             User user = idmIdentityService.newUser(userId);
-            user.setFirstName(userName.substring(0, 1));
-            if (userName.length() > 1) {
-                user.setLastName(userName.substring(1, userName.length()));
-            } else {
-                user.setLastName(" ");
-            }
+            user.setFirstName(userName);
+            user.setLastName(" ");
             idmIdentityService.saveUser(user);
             return true;
         } catch (Exception e) {
@@ -182,6 +181,7 @@ public class FlowServiceImpl implements FlowService {
     @Override
     public boolean synGroup(String groupId, String groupName) {
         try {
+            idmIdentityService.deleteGroup(groupId);
             Group group = idmIdentityService.newGroup(groupId);
             group.setName(groupName);
             idmIdentityService.saveGroup(group);
@@ -193,9 +193,9 @@ public class FlowServiceImpl implements FlowService {
 
     @Override
     public boolean synMembership(String groupId, List<String> userIds) {
+        idmMapper.delMembershipByGroupId(groupId);
         if (userIds != null && userIds.size() > 0) {
             for (String userId : userIds) {
-                CommandContextUtil.getMembershipEntityManager().deleteMembershipByUserId(userId);
                 idmIdentityService.createMembership(userId, groupId);
             }
             return true;
