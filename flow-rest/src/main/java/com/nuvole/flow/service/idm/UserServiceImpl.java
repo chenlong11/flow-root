@@ -36,7 +36,7 @@ public class UserServiceImpl extends AbstractIdmService implements UserService {
     protected UserQuery createUserQuery(String filter, String sort) {
         UserQuery userQuery = identityService.createUserQuery();
         if (StringUtils.isNotEmpty(filter)) {
-            userQuery.userFullNameLikeIgnoreCase("%" + filter + "%").userId(filter);
+            userQuery.userFullNameLikeIgnoreCase("%" + filter + "%");
         }
 
         if (StringUtils.isNotEmpty(sort)) {
@@ -121,14 +121,14 @@ public class UserServiceImpl extends AbstractIdmService implements UserService {
         }
 
         List<Privilege> userPrivileges = identityService.createPrivilegeQuery().userId(userId).list();
-        Set<String> privilegeNames = new HashSet<>();
+        Set<String> privilegeNames = new HashSet<String>();
         for (Privilege userPrivilege : userPrivileges) {
             privilegeNames.add(userPrivilege.getName());
         }
 
         List<Group> groups = identityService.createGroupQuery().groupMember(userId).list();
         if (groups.size() > 0) {
-            List<String> groupIds = new ArrayList<>();
+            List<String> groupIds = new ArrayList<String>();
             for (Group group : groups) {
                 groupIds.add(group.getId());
             }

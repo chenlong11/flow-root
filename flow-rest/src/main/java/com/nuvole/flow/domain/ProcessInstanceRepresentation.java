@@ -28,7 +28,7 @@ public class ProcessInstanceRepresentation extends AbstractRepresentation {
     protected boolean graphicalNotationDefined;
     protected boolean startFormDefined;
 
-    protected List<RestVariable> variables = new ArrayList<>();
+    protected List<RestVariable> variables = new ArrayList<RestVariable>();
 
     public ProcessInstanceRepresentation(ProcessInstance processInstance, ProcessDefinition processDefinition, boolean graphicalNotation, User startedBy) {
         this(processInstance, graphicalNotation, startedBy);

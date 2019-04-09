@@ -267,7 +267,7 @@ public class ModelServiceImpl implements ModelService {
             String processName = model.getName() + ".bpmn20.xml";
             Deployment deployment = repositoryService.createDeployment()
                     .name(model.getName())
-                    .addString(processName, new String(bpmnBytes))
+                    .addString(processName, new String(bpmnBytes,"UTF-8"))
                     .deploy();
 
             ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().deploymentId(deployment.getId()).singleResult();
@@ -284,7 +284,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     protected Map<String, StartEvent> processNoneStartEvents(BpmnModel bpmnModel) {
-        Map<String, StartEvent> startEventMap = new HashMap<>();
+        Map<String, StartEvent> startEventMap = new HashMap<String, StartEvent>();
         for (Process process : bpmnModel.getProcesses()) {
             for (FlowElement flowElement : process.getFlowElements()) {
                 if (flowElement instanceof StartEvent) {

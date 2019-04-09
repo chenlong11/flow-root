@@ -73,7 +73,7 @@ public class PageBean<T> implements Serializable {
         this.pageSize = 10;
         this.total = 0;
         this.pages = 0;
-        this.rows = new ArrayList<>();
+        this.rows = new ArrayList<T>();
         this.size = 0;
     }
 }

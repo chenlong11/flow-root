@@ -30,3 +30,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
     configuration 'proguard-rules.pro'
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+

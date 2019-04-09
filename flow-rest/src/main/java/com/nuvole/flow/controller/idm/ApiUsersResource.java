@@ -1,12 +1,14 @@
 package com.nuvole.flow.controller.idm;
 
+import cn.hutool.core.util.StrUtil;
+import com.github.pagehelper.PageHelper;
 import com.nuvole.flow.domain.GroupRepresentation;
 import com.nuvole.flow.domain.UserInformation;
 import com.nuvole.flow.domain.UserRepresentation;
 import com.nuvole.flow.service.exception.NotFoundException;
+import com.nuvole.flow.service.idm.IdmService;
 import com.nuvole.flow.service.idm.UserService;
 import org.flowable.idm.api.Group;
-import org.flowable.idm.api.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest/flow")
 public class ApiUsersResource {
+
+    @Autowired
+    protected IdmService idmservice;
 
     @Autowired
     protected UserService userService;
@@ -43,10 +48,16 @@ public class ApiUsersResource {
 
     @RequestMapping(value = "/idm/users", method = RequestMethod.GET, produces = { "application/json" })
     public List<UserRepresentation> findUsersByFilter(@RequestParam("filter") String filter) {
-        List<User> users = userService.getUsers(filter, null, null);
+        PageHelper.startPage(1, 100);
         List<UserRepresentation> result = new ArrayList<UserRepresentation>();
-        for (User user : users) {
-            result.add(new UserRepresentation(user));
+        if(StrUtil.isNotBlank(filter)){
+            result = idmservice.getUsersByFilter(filter);
+        }
+        //List<User> users = userService.getUsers(filter, null, null);
+
+        for (UserRepresentation user : result) {
+            user.setFullName(user.getFirstName() + user.getLastName());
+            //result.add(new UserRepresentation(user));
         }
         return result;
     }

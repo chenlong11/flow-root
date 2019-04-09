@@ -60,7 +60,7 @@ public abstract class AbstractInfoMapper implements InfoMapper {
 
     protected void createListenerPropertyNodes(String name, List<FlowableListener> listeners) {
         if (CollectionUtils.isNotEmpty(listeners)) {
-            List<String> listenerValues = new ArrayList<>();
+            List<String> listenerValues = new ArrayList<String>();
             for (FlowableListener listener : listeners) {
                 StringBuilder listenerBuilder = new StringBuilder();
                 listenerBuilder.append(listener.getEvent());
@@ -96,7 +96,7 @@ public abstract class AbstractInfoMapper implements InfoMapper {
 
     protected void createFieldPropertyNodes(String name, List<FieldExtension> fields) {
         if (CollectionUtils.isNotEmpty(fields)) {
-            List<String> fieldValues = new ArrayList<>();
+            List<String> fieldValues = new ArrayList<String>();
             for (FieldExtension field : fields) {
                 StringBuilder fieldBuilder = new StringBuilder();
                 fieldBuilder.append(field.getFieldName());

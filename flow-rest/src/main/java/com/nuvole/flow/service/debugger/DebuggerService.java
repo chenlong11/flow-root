@@ -37,7 +37,7 @@ import static org.flowable.engine.impl.agenda.DebugContinueProcessOperation.HAND
 @Service
 public class DebuggerService implements ProcessDebugger, ApplicationContextAware {
 
-    protected List<BreakpointRepresentation> breakpoints = new ArrayList<>();
+    protected List<BreakpointRepresentation> breakpoints = new ArrayList<BreakpointRepresentation>();
     protected ApplicationContext applicationContext;
 
     public void addBreakpoint(BreakpointRepresentation breakpointRepresentation) {
@@ -62,7 +62,7 @@ public class DebuggerService implements ProcessDebugger, ApplicationContextAware
                 handlerType(HANDLER_TYPE_BREAK_POINT).
                 list();
 
-        ArrayList<String> executions = new ArrayList<>();
+        ArrayList<String> executions = new ArrayList<String>();
         for (Job brokenJob : brokenJobs) {
             Execution brokenJobExecution = getRuntimeService().createExecutionQuery().executionId(brokenJob.getExecutionId()).singleResult();
             if (activityId.equals(brokenJobExecution.getActivityId())) {

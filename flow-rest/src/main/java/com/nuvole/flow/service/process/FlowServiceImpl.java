@@ -1,8 +1,8 @@
 package com.nuvole.flow.service.process;
 
 import com.nuvole.flow.domain.TaskRepresentation;
-import com.nuvole.flow.mapper.IdmMapper;
 import com.nuvole.flow.mapper.TaskMapper;
+import com.nuvole.flow.service.idm.IdmService;
 import org.flowable.bpmn.model.*;
 import org.flowable.common.engine.impl.identity.Authentication;
 import org.flowable.engine.HistoryService;
@@ -35,7 +35,7 @@ import java.util.Map;
 public class FlowServiceImpl implements FlowService {
 
     @Autowired
-    private IdmMapper idmMapper;
+    private IdmService idmService;
 
     @Autowired
     private RepositoryService repositoryService;
@@ -193,7 +193,7 @@ public class FlowServiceImpl implements FlowService {
 
     @Override
     public boolean synMembership(String groupId, List<String> userIds) {
-        idmMapper.delMembershipByGroupId(groupId);
+        idmService.delMembershipByGroupId(groupId);
         if (userIds != null && userIds.size() > 0) {
             for (String userId : userIds) {
                 idmIdentityService.createMembership(userId, groupId);

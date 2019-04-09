@@ -14,8 +14,8 @@ public class RemoteUser implements User {
     protected String email;
     protected String fullName;
     protected String tenantId;
-    protected List<RemoteGroup> groups = new ArrayList<>();
-    protected List<String> privileges = new ArrayList<>();
+    protected List<RemoteGroup> groups = new ArrayList<RemoteGroup>();
+    protected List<String> privileges = new ArrayList<String>();
 
     @Override
     public String getId() {
