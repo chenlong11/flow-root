@@ -3,6 +3,7 @@ package com.nuvole.flow.controller.idm;
 import com.nuvole.flow.domain.ResultListDataRepresentation;
 import com.nuvole.flow.domain.UserRepresentation;
 import com.nuvole.flow.service.idm.RemoteIdmService;
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.identitylink.api.IdentityLink;
@@ -18,6 +19,7 @@ import java.util.*;
 /**
  * Rest resource for managing users, specifically related to tasks and processes.
  */
+@Slf4j
 @RestController
 @RequestMapping("/rest/flow")
 public class WorkflowUsersResource {
