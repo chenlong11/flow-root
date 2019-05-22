@@ -12,14 +12,16 @@
  */
 package com.nuvole.flow.service.idm;
 
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.github.pagehelper.PageHelper;
 import com.nuvole.flow.domain.RemoteGroup;
 import com.nuvole.flow.domain.RemoteToken;
 import com.nuvole.flow.domain.RemoteUser;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.http.HttpHeaders;
+import com.nuvole.flow.domain.UserRepresentation;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
@@ -38,7 +40,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,9 @@ public class RemoteIdmServiceImpl implements RemoteIdmService {
 //    private static final String PROPERTY_URL = "idm.app.url";
 //    private static final String PROPERTY_ADMIN_USER = "idm.admin.user";
 //    private static final String PROPERTY_ADMIN_PASSWORD = "idm.admin.password";
+
+    @Autowired
+    protected IdmService idmservice;
 
     @Autowired
     protected Environment environment;
@@ -110,7 +114,24 @@ public class RemoteIdmServiceImpl implements RemoteIdmService {
 
     @Override
     public List<RemoteUser> findUsersByNameFilter(String filter) {
-        JsonNode json = callRemoteIdmService(url + "/idm/users?filter=" + encode(filter), adminUser, adminPassword);
+
+        PageHelper.startPage(1, 100);
+        List<UserRepresentation> result = new ArrayList<UserRepresentation>();
+        if(StrUtil.isNotBlank(filter)){
+            result = idmservice.getUsersByFilter(filter);
+        }
+        for (UserRepresentation user : result) {
+            String lastName = user.getLastName() == null ? "" : user.getLastName();
+            user.setFullName(user.getFirstName() + lastName);
+        }
+
+        //JsonNode json = callRemoteIdmService(url + "/idm/users?filter=" + encode(filter), adminUser, adminPassword);
+        JsonNode json = null;
+        try {
+            json = objectMapper.readTree(JSON.toJSONString(result));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (json != null) {
             return parseUsersInfo(json);
         }
@@ -145,11 +166,10 @@ public class RemoteIdmServiceImpl implements RemoteIdmService {
     }
 
     protected JsonNode callRemoteIdmService(String url, String username, String password) {
-        //LOGGER.info("callRemote url is : {} ",url);
-        HttpGet httpGet = new HttpGet(url);
-        httpGet.setHeader(HttpHeaders.AUTHORIZATION, "Basic " + new String(
-                Base64.encodeBase64((username + ":" + password).getBytes(Charset.forName("UTF-8")))));
 
+        HttpGet httpGet = new HttpGet(url);
+//        httpGet.setHeader(HttpHeaders.AUTHORIZATION, "Basic " + new String(
+//                Base64.encodeBase64((username + ":" + password).getBytes(Charset.forName("UTF-8")))));
         HttpClientBuilder clientBuilder = HttpClientBuilder.create();
         SSLConnectionSocketFactory sslsf = null;
         try {

@@ -8,6 +8,7 @@ import com.nuvole.flow.domain.UserRepresentation;
 import com.nuvole.flow.service.exception.NotFoundException;
 import com.nuvole.flow.service.idm.IdmService;
 import com.nuvole.flow.service.idm.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.idm.api.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/rest/flow")
 public class ApiUsersResource {
@@ -54,7 +56,6 @@ public class ApiUsersResource {
             result = idmservice.getUsersByFilter(filter);
         }
         //List<User> users = userService.getUsers(filter, null, null);
-
         for (UserRepresentation user : result) {
             user.setFullName(user.getFirstName() + user.getLastName());
             //result.add(new UserRepresentation(user));

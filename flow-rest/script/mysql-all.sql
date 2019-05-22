@@ -441,6 +441,18 @@ CREATE TABLE `act_id_user` (
   PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+DROP TABLE IF EXISTS `act_id_info`;
+create table act_id_info (
+    ID_ varchar(64),
+    REV_ integer,
+    USER_ID_ varchar(64),
+    TYPE_ varchar(64),
+    KEY_ varchar(255),
+    VALUE_ varchar(255),
+    PASSWORD_ LONGBLOB,
+    PARENT_ID_ varchar(255),
+    primary key (ID_)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 -- ----------------------------
 -- Table structure for act_procdef_info
 -- ----------------------------
